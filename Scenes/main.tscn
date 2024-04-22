@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://cdca1eksyofa1"]
+
+[ext_resource type="Script" path="res://Assets/free_look_camera.gd" id="1_bd60j"]
+[ext_resource type="Script" path="res://Scripts/Weapon.cs" id="2_ltqir"]
+[ext_resource type="PackedScene" uid="uid://cyu0eppcevmpf" path="res://Scenes/Bullet.tscn" id="3_uxlal"]
+[ext_resource type="PackedScene" uid="uid://du1wlqi6ox468" path="res://Scenes/Fractals.tscn" id="4_ul5w0"]
+[ext_resource type="Script" path="res://Scripts/Fractals/FractalsReset.cs" id="5_p756i"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_aw1rn"]
+size = Vector2(200, 200)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6r5qj"]
+size = Vector3(200, 0.125, 200)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.79674)
+script = ExtResource("1_bd60j")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
+
+[node name="Weapon" type="Node3D" parent="Camera3D"]
+script = ExtResource("2_ltqir")
+bullet = ExtResource("3_uxlal")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.477511, 0.878626, 0, -0.878626, 0.477511, 0, 4.82017, 6.75258)
+
+[node name="Map" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.062, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map"]
+mesh = SubResource("PlaneMesh_aw1rn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map"]
+shape = SubResource("BoxShape3D_6r5qj")
+
+[node name="FractalsReset" type="Node3D" parent="."]
+script = ExtResource("5_p756i")
+fractalsScene = ExtResource("4_ul5w0")

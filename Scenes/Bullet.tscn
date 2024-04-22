@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=3 uid="uid://cyu0eppcevmpf"]
+
+[ext_resource type="Script" path="res://Scripts/Bullet.cs" id="1_r05b6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7q2e2"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_c43w8"]
+radial_segments = 4
+rings = 1
+
+[sub_resource type="Gradient" id="Gradient_kg4ax"]
+colors = PackedColorArray(1, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jfm2l"]
+gradient = SubResource("Gradient_kg4ax")
+
+[sub_resource type="Curve" id="Curve_7jm23"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3rdcn"]
+curve = SubResource("Curve_7jm23")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ykcnt"]
+emission_shape = 1
+emission_sphere_radius = 0.1
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.06
+scale_max = 0.12
+scale_curve = SubResource("CurveTexture_3rdcn")
+color_ramp = SubResource("GradientTexture1D_jfm2l")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rxhit"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="TorusMesh" id="TorusMesh_rvu6m"]
+material = SubResource("StandardMaterial3D_rxhit")
+
+[node name="Bullet" type="RigidBody3D" node_paths=PackedStringArray("particles")]
+collision_layer = 2
+script = ExtResource("1_r05b6")
+particles = NodePath("GPUParticles3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_7q2e2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_c43w8")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 32
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ykcnt")
+draw_pass_1 = SubResource("TorusMesh_rvu6m")

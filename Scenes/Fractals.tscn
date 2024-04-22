@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://du1wlqi6ox468"]
+
+[ext_resource type="Script" path="res://Scripts/Fractals/FractalGenerator.cs" id="1_iapo4"]
+[ext_resource type="Script" path="res://Scripts/Fractals/SierpinskiPyramid.cs" id="2_1ygb1"]
+[ext_resource type="Script" path="res://Scripts/Fractals/MengerSponge.cs" id="3_to164"]
+
+[node name="Fractals" type="Node3D"]
+
+[node name="FractalGenerator" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+script = ExtResource("1_iapo4")
+fractal = ExtResource("2_1ygb1")
+iterations = 0
+maxIter = 0
+maxWeaponIter = 6
+startSize = 4.0
+addPhysics = true
+
+[node name="FractalGenerator2" type="Node3D" parent="."]
+script = ExtResource("1_iapo4")
+fractal = ExtResource("2_1ygb1")
+iterations = 1
+maxIter = 0
+maxWeaponIter = 6
+startSize = 4.0
+addPhysics = true
+
+[node name="FractalGenerator3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+script = ExtResource("1_iapo4")
+fractal = ExtResource("2_1ygb1")
+iterations = 2
+maxIter = 0
+maxWeaponIter = 6
+startSize = 4.0
+addPhysics = true
+
+[node name="FractalGenerator4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+script = ExtResource("1_iapo4")
+fractal = ExtResource("2_1ygb1")
+maxIter = 0
+maxWeaponIter = 6
+startSize = 4.0
+addPhysics = true
+
+[node name="FractalGenerator5" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -5)
+script = ExtResource("1_iapo4")
+fractal = ExtResource("3_to164")
+iterations = 0
+maxIter = 0
+maxWeaponIter = 4
+startSize = 4.0
+addPhysics = true
+
+[node name="FractalGenerator6" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+script = ExtResource("1_iapo4")
+fractal = ExtResource("3_to164")
+iterations = 1
+maxIter = 0
+maxWeaponIter = 4
+startSize = 4.0
+addPhysics = true
+
+[node name="FractalGenerator7" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -5)
+script = ExtResource("1_iapo4")
+fractal = ExtResource("3_to164")
+iterations = 2
+maxIter = 0
+maxWeaponIter = 4
+startSize = 4.0
+addPhysics = true
